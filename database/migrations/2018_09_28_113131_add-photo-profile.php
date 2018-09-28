@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApiToken extends Migration
+class AddPhotoProfile extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateApiToken extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('api_token', 60)->unique()->nullable();
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class CreateApiToken extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('api_token');
+            $table->dropColumn('avatar');
         });
     }
 }
