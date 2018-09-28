@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Middleware\SuperAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +20,11 @@ Route::post('/client', 'UserManipulateController@signup'); //registration
 Route::post('/login', 'Auth\LoginController@login'); //login
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users', 'UserManipulateController@all'); //list of users
-    Route::post('/image', 'ImageController@create');
-    Route::get('/images/admin', 'ImageController@all');
+    //images
+    Route::post('/image', 'ImageController@create');//create imagee
+    Route::get('/images/admin', 'ImageController@all'); //all image by all user
+    Route::put('/image/{image}', 'ImageController@updateImage'); //change image
+    Route::delete('/image/{image}', 'ImageController@deleteImage'); // delete
     Route::get('/images', 'ImageController@imagesForCurrent');
     Route::group(['prefix' => 'auth'], function () {
 //    Route::get('/client/{id}', 'UserManipulateController@profile');

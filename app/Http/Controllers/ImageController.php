@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Image;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +13,13 @@ class ImageController extends Controller
 
     public function create(Request $request)
     {
-        $input = $request->all();
-        $input['user_id'] = auth()->id();
-        return response()->json(Image::create($input));
+        $filename = \Storage::put(Image::getImageDir(), $request->file('pic'));
+        Image::create([
+            'link'    => $filename,
+            'user_id' => auth()->id()
+        ]);
+
+        return response()->json(['message' => 'Misha petuh']);
     }
 
     public function all() //only admin
