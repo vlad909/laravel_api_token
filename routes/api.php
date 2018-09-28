@@ -14,7 +14,7 @@ use App\Http\Middleware\SuperAdmin;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//Route::middleware('auth:api')->get('/user', function (Reqest $request) {
 //    return $request->user();
 //});
 Route::post('/client', 'UserManipulateController@signup'); //registration
@@ -22,6 +22,8 @@ Route::post('/login', 'Auth\LoginController@login'); //login
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users', 'UserManipulateController@all'); //list of users
     Route::post('/image', 'ImageController@create');
+    Route::get('/images/admin', 'ImageController@all');
+    Route::get('/images', 'ImageController@imagesForCurrent');
     Route::group(['prefix' => 'auth'], function () {
 //    Route::get('/client/{id}', 'UserManipulateController@profile');
         Route::get('/client/{id}', 'UserManipulateController@profile'); //data by id user's

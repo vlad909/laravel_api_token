@@ -22,11 +22,11 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+        /**
+         * Where to redirect users after login.
+         *
+         * @var string
+         */
     protected $redirectTo = '/home';
 
     /**
@@ -44,6 +44,7 @@ class LoginController extends Controller
         if (auth()->attempt(\request(['email', 'password'])) == false) {
             return response()->json(['message' => 'почта или пароль не оч'], 401);
         }
-        return response()->json(['message' =>  'success', 'user' => auth()->user()], 200);
+        return response()->json(['message' => 'success', 'user' => auth()->user()], 200);
     }
+
 }
