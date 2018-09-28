@@ -17,6 +17,21 @@ class UserManipulateController extends Controller
         return response()->json(User::findOrFail($id));
     }
 
+    public function all()
+    {
+        $this->authorize('index', User::class);
+
+        return response()->json(User::query()
+//            ->select(['name'])
+            ->orderBy('id', 'asc')
+//            ->where([
+//                'email' => 'admin@admin.ru'
+//            ])
+            ->where('email', '!=', 'admin@admin.ru')
+            ->get()
+        );
+    }
+
 //    public function login()
 //    {
 ////        return response()->json(User::whe);

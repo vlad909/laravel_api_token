@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function login()
+    {
+        if (auth()->attempt(\request(['email', 'password'])) == false) {
+            return response()->json(['message' => 'почта или пароль не оч'], 401);
+        }
+        return response()->json(['message' =>  'success', 'user' => auth()->user()], 200);
     }
 }
