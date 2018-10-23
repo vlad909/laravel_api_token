@@ -33,5 +33,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'tasks'], function () {
 //        Route::post('/create', '');
     });
+    Route::group(['prefix' => 'musics'], function () {
+        Route::post('/song', 'SongController@add_music');
+        Route::get('/song', 'SongController@paginated_music');
+    });
+    Route::group(['prefix' => 'albums'], function () {
+        Route::post('/album', 'AlbumController@add');
+    });
 });
 
