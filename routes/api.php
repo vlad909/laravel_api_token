@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'musics'], function () {
         Route::post('/song', 'SongController@add_music');
         Route::get('/song', 'SongController@paginated_music');
+        Route::post('/favorite', 'FavoriteSongController@addToFavorite');
     });
     Route::group(['prefix' => 'albums'], function () {
         Route::post('/album', 'AlbumController@add');
