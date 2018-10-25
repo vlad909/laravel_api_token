@@ -12,9 +12,9 @@ class UserManipulateController extends Controller
         return response()->json(User::query()->create($request->all()));
     }
 
-    public function profile($id)
+    public function profile()
     {
-        return response()->json(User::findOrFail($id));
+        return response()->json(User::findOrFail(auth()->user()->id));
     }
 
     public function all()

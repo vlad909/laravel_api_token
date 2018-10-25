@@ -11,9 +11,9 @@ class FavoriteSong extends Model
     protected $fillable = ['song_id'];
     protected $hidden = ['id', 'created_at', 'updated_at'];
 
-    public function album()
+    public function song()
     {
-        return $this->belongsTo(Album::class);
+        return $this->belongsTo(Song::class);
     }
 
     public function user()
@@ -26,7 +26,6 @@ class FavoriteSong extends Model
         parent::boot();
         static::creating(function ($song) { //auto save id if auth
             $song->user_id = auth()->user()->id;
-
         });
     }
 }

@@ -17,4 +17,5 @@ class SongController extends Controller
     {
         return response()->json(Song::query()->with('album')->orderBy('id', 'asc')->paginate(5));
     }
+
 }

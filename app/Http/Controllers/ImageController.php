@@ -25,12 +25,12 @@ class ImageController extends Controller
     public function all() //only admin
     {
         $this->authorize('index', User::class);
-        return response()->json(Image::orderBy('user_id', 'asc')->get());
+        return response()->json(Image::query()->orderBy('user_id', 'asc')->get());
     }
 
     public function imagesForCurrent()
     {
-        return response()->json(Image::where('user_id', auth()->user()->id)->get());
+        return response()->json(Image::query()->where('user_id', auth()->user()->id)->get());
     }
 
     public function updateImage(Image $image, Request $request)
@@ -41,6 +41,6 @@ class ImageController extends Controller
 
     public function deleteImage(Image $image)
     {
-        return response()->json($image->delete());
+        return response()->json($image::query()->delete());
     }
 }

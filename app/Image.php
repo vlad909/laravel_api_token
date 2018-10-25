@@ -23,7 +23,7 @@ class Image extends Model
     public function getUrlAttribute()
     {
         if ($this->link) {
-            $path = env('APP_URL') === 'http://localhost:8000' ?  'http://f1b07f31.ngrok.io' : env('APP_URL');
+            $path = env('APP_URL') === 'http://localhost:8000' ? 'http://fb445c7b.ngrok.io' : env('APP_URL');
             return $path . '/' . str_replace('public/', 'storage/', $this->link);
         }
 
